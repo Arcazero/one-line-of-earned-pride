@@ -32,6 +32,8 @@ def load_pride() -> str:
         raise ValueError("pride line is empty")
     if pride != pride.strip():
         raise ValueError("pride line has leading or trailing whitespace")
+    if not any(ch.isalnum() for ch in pride):
+        raise ValueError("pride line must contain at least one letter or digit")
     if "\n" in pride or "\r" in pride:
         raise ValueError("pride line must be a single line")
     if len(pride) > MAX_LINE_CHARS:
